@@ -1,1 +1,1 @@
-
+This JavaScript code defines a CrudArray class that performs basic CRUD operations (Create, Read, Update, Delete) on an in-memory array. Each item is stored as an object with a unique id and a name. The create method adds a new item with an auto-incremented ID. readAll returns all items, while readById retrieves a specific item by its ID. The update method changes an item’s name if the ID exists, and delete removes an item by its ID. The example demonstrates creating two items, updating one, and deleting the other, showing how the array is modified dynamically.

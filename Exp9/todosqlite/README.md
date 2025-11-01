@@ -1,31 +1,16 @@
-📝 SQLite Todo App
+# todosqlite
 
-A simple Todo app built using SQLite for storing tasks locally.
+A new Flutter project.
 
-🚀 Get Started
+## Getting Started
 
-Install SQLite
+This project is a starting point for a Flutter application.
 
-sudo apt install sqlite3
+A few resources to get you started if this is your first Flutter project:
 
-Run the project
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-node index.js
-
-💾 Features
-
-Add, edit, and delete todos
-
-Stores all data in a local SQLite database
-
-Fast, lightweight, and works offline
-
-🧠 Tech Used
-
-Node.js
-
-SQLite3
-
-📚 Learn More
-
-SQLite Documentation
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

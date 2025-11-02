@@ -1,6 +1,6 @@
 {
-    "name": "login",
-    "short_name": "login",
+    "name": "restapi",
+    "short_name": "restapi",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

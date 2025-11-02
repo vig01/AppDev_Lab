@@ -1,30 +1,49 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:firebase_todo/main.dart';
+import 'package:flutter/services.dart';
+import 'package:firebasetodo/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Mock Firebase Core
+    MethodChannel('plugins.flutter.io/firebase_core')
+        .setMockMethodCallHandler((MethodCall methodCall) async {
+      if (methodCall.method == 'Firebase#initializeApp') {
+        return [
+          {
+            'name': 'mock-app',
+            'options': {
+              'apiKey': 'mock_api_key',
+              'appId': 'mock_app_id',
+              'messagingSenderId': 'mock_sender_id',
+              'projectId': 'mock_project_id',
+            },
+            'pluginConstants': {},
+          }
+        ];
+      }
+      return null;
+    });
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  group('Firestore Calculator Widget Tests', () {
+    testWidgets('App launches and displays correct title and structure', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: MyApp()));
+      await tester.pumpAndSettle();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+      expect(find.text("Vighnesh's Firestore Calculator (Exp 10)"), findsOneWidget);
+      expect(find.text('7'), findsOneWidget);
+    });
+
+    testWidgets('App displays the initial calculation output', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: CalculatorPage()));
+      await tester.pumpAndSettle();
+
+      // ✅ use the key instead of find.text('0')
+      expect(find.byKey(const Key('displayText')), findsOneWidget);
+      expect(find.text('0'), findsWidgets); // optional, shows both are present
+    });
   });
 }

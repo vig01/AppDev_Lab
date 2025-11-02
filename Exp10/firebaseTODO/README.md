@@ -1,4 +1,4 @@
-# firebase_todo
+# firebasetodo
 
 A new Flutter project.
 

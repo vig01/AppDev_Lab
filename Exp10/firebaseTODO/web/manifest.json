@@ -1,6 +1,6 @@
 {
-    "name": "firebase_todo",
-    "short_name": "firebase_todo",
+    "name": "firebasetodo",
+    "short_name": "firebasetodo",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
